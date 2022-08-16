@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'contact_module',
     'site_module',
     'article_module',
+    'user_panel_module',
     # external apps
     'django_render_partial',
     'sorl.thumbnail',
