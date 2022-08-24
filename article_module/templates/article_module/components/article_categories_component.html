@@ -13,7 +13,7 @@
                         </a>
 
                     {% else %}
-                        <a href="{% url 'articles_by_category_list' category=main_category.url_title %}">
+                        <a href="{% url 'articles_by_category_list' cat=main_category.url_title %}">
                             {{ main_category.title }}
                         </a>
                     {% endif %}

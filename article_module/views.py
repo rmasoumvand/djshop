@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
-from article_module.models import Article, ArticleCategory, ArticleComment
+from .models import Article, ArticleCategory, ArticleComment
 
 
 class ArticlesListView(ListView):
@@ -17,7 +17,7 @@ class ArticlesListView(ListView):
     def get_queryset(self):
         query = super(ArticlesListView, self).get_queryset()
         query = query.filter(is_active=True)
-        category_name = self.kwargs.get('category')
+        category_name = self.kwargs.get('cat')
         if category_name is not None:
             query = query.filter(selected_categories__url_title__iexact=category_name)
         return query
