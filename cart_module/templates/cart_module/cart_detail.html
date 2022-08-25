@@ -1,0 +1,104 @@
+
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% load render_partial %}
+{% load static %}
+{% load poll_extras %}
+
+{% block title %}
+سبد خرید
+{% endblock %}
+   
+
+{% block content %}
+&nbsp
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div style="padding: 10px ;" >
+
+	{% if  cart.items.all.count != 0   %}
+		<table class="table table-bordered table-hover table-responsive"  >
+				
+
+			<thead>
+				<tr>
+					<th class="text-center"> تصویر محصول</th>
+					<th class="text-center"> عنوان محصول</th>
+					<th class="text-center">قیمت واحد محصول</th>
+					<th class="text-center">تعداد</th>
+					<th class="text-center">قیمت کل</th>
+					<th class="text-center"> عملیات </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				{% for item in cart.items.all %}
+				{% with product=item.product %}
+					<tr class="text-center">
+						<td >
+							{% if product.image %}
+							{% thumbnail product.image "100x100" quality=90 crop='center' as im %}
+								<img src="{{ im.url }}">
+							{% endthumbnail %}
+							{% else %}
+								<img src="/static/images/shop/product.jpg" alt="">
+							{% endif %}
+						</td>
+
+						<td>
+							{{ product.title }} <br>
+							{{ product.short_description }}
+						</td>
+
+						<td >
+							{{ product.price|three_digits_currency }}
+						</td>
+
+						<td >
+
+								<form action="{% url 'cart_add_q' product_id=product.id  %}" >
+
+								<input type="number" name="q" value="{{ item.quantity }}" class="form-control text-center"  onchange="this.form.submit()">	
+								
+								{% csrf_token %}
+									
+								</form>
+								
+						</td>
+
+						<td >{{item.get_cost|three_digits_currency}}</td>
+
+						<td >
+							<a href="{% url 'cart_remove' product_id=product.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>								
+						</td>
+
+					</tr>
+				{% endwith %}
+				{% endfor %}
+			</tbody>
+
+		</table>
+
+		<hr>
+
+		<div class="text-center">
+			<h4 class="text-center ">قیمت کل به تومان  :  {{cart.get_total_cost|three_digits_currency}}</h4>
+			<br><br>
+			<a href="{% url 'product-list' %}" class="btn btn-warning">  نمایش محصولات</a>
+			<a href="{% url 'order_create' %}" class="btn btn-success"> ادامه پرداخت</a>
+
+		</div>
+	{% else %}
+		<div class="alert alert-info">
+			<strong class="text-center"> سبد خرید شما خالی است</strong>
+		</div>
+	{% endif %}
+	
+
+</div>
+
+	
+
+&nbsp
+{% endblock %}
