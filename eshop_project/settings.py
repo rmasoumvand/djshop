@@ -50,6 +50,10 @@ INSTALLED_APPS = [
     'django_render_partial',
     'sorl.thumbnail',
     'jalali_date',
+    'azbankgateways',
+    'apppayment'
+
+    
 ]
 
 MIDDLEWARE = [
@@ -159,6 +163,8 @@ EMAIL_HOST_USER = 'mohammadataei.django@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 
+
+
 # default settings
 JALALI_DATE_DEFAULTS = {
     'Strftime': {
@@ -182,4 +188,25 @@ JALALI_DATE_DEFAULTS = {
             ]
         }
     },
+}
+
+
+MERCHANT_CODE = '67c0f1bd-1369-4bb5-b846-511034c649b3'
+
+AZ_IRANIAN_BANK_GATEWAYS = {
+   'GATEWAYS': {
+       'IDPAY': {
+           'MERCHANT_CODE': '67c0f1bd-1369-4bb5-b846-511034c649b3',
+           'METHOD': 'POST',  # GET or POST
+           'X_SANDBOX': 1,  # 0 disable, 1 active
+       },
+   },
+   'IS_SAMPLE_FORM_ENABLE': True, # اختیاری و پیش فرض غیر فعال است
+   'DEFAULT': 'IDPAY',
+   'CURRENCY': 'IRT', # اختیاری
+   'TRACKING_CODE_QUERY_PARAM': 'tc', # اختیاری
+   'TRACKING_CODE_LENGTH': 16, # اختیاری
+   'SETTING_VALUE_READER_CLASS': 'azbankgateways.readers.DefaultReader', # اختیاری
+   'BANK_PRIORITIES': [
+   ], # اختیاری
 }
