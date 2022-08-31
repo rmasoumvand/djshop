@@ -9,4 +9,4 @@ sqlparse==0.4.2
 tzdata==2021.5
 requests==2.24.0
 az-iranian-bank-gateways
-
+mysqlclient
