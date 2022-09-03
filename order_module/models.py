@@ -14,7 +14,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True , verbose_name= 'زمان ایجاد')
     updated = models.DateTimeField(auto_now=True , verbose_name= 'زمان ویرایش' )
     paid = models.BooleanField(default=False , verbose_name= 'پرداخت شده ؟' )
-    total_price = models.DecimalField(max_digits=10, decimal_places=2 , default=0 , verbose_name= 'مجموع قیمت')
+    total_price = models.DecimalField(max_digits=10, decimal_places=0 , default=0 , verbose_name= 'مجموع قیمت')
 
     class Meta:
         verbose_name = 'سفارشات'
@@ -39,7 +39,7 @@ class OrderItem(models.Model):
     related_name='order_products',
     on_delete=models.CASCADE, verbose_name= 'محصول'
     )
-    price = models.DecimalField(max_digits=10, decimal_places=2  , verbose_name= 'قیمت واحد')
+    price = models.DecimalField(max_digits=10, decimal_places=0  , verbose_name= 'قیمت واحد')
     quantity = models.PositiveIntegerField(default=1 , verbose_name= 'تعداد محصول')
 
     class Meta:

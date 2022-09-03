@@ -1,9 +1,10 @@
+from ast import Delete
 from django.shortcuts import render
 
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect, reverse
 from .models import *
-from cart_module.models import Cart
+from cart_module.models import Cart, CartItem
 from  account_module.models import User
 # Create your views here.
 
@@ -26,7 +27,10 @@ def order_save(request):
     order.province = request.POST['province']
     order.city = request.POST['city']
     order.save()
-    
+
+    #clear cart and card items
+    CartItem.objects.all().delete()
+    Cart.objects.all().delete()
    
     return redirect('../go-to-gateway/' + str(order.id))
 
