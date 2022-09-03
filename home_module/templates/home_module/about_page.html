@@ -11,40 +11,44 @@
         <div class="bg">
 
             <div class="row">
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="contact-info">
                         <h2 class="title text-center">لوگـو شرکت</h2>
                         <img src="{{ site_setting.site_logo.url }}" class="img-responsive">
                     </div>
-                </div>
-                <div class="col-sm-8">
+                </div> -->
+                <div class="col-sm-12">
                     <div class="about">
                         <h2 class="title text-center">دربـاره ما</h2>
-                        <p class="about-desc">
+                        <!-- <p class="about-desc">
                             {{ site_setting.about_us_text }}
-                        </p>
+                        </p> -->
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 about-address">
-                    <address>
-                        <p>
-                            {{ site_setting.address }}|
-                            تلفن تماس : {{ site_setting.phone }} |
-                            {% if site_setting.fax %}
-                                فکس : {{ site_setting.fax }} |
-                            {% endif %}
+                    <!-- <h5> آدرس : {{ site_setting.address }} </h5>
+                    <h5>  تلفن تماس : {{ site_setting.phone }} </h5>
+                    <h5>   {% if site_setting.fax %}
+                              فکس : {{ site_setting.fax }} 
+                          {% endif %}
+                   </h5>
+                   <h5>
                             {% if site_setting.email %}
                                 ایمیـل : {{ site_setting.email }}
-                            {% endif %}
-                        </p>
-                    </address>
+                           {% endif %}
+                   </h5> -->
+
+                   <p style="line-height:24px ;">
+                    هومیو یک پلتفرم آنلاین برای خرید، فروش و مزایده است. در سایت ایسام می‌توانید هم فروشنده باشید و هم خریدار، به این معنا که هر کالایی را که بخواهید، می‌توانید از هر نقطه از کشور بخرید و یا هر کالایی را به هر نقطه از کشور بفرستید. سایت هومیو از وبسایت "ebay" الگوبرداری شده و تمام ویژگی‌های ebay را بر اساس نیاز کاربران ایرانی شناسایی کرده است. ایسام از بهمن ۱۳۹۰ تا کنون مشغول به کار است و در حال حاضر به بیش از ۳ میلیون کاربر ایرانی خدمات میدهد.
+                   </p>
+                  
                 </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="container">
                     <div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px"><h2 class="title text-center">
                         مـا اینجـا هستیـم ... </h2>
@@ -53,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
