@@ -99,7 +99,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myshopdb',   # your database name
+        'NAME': 'eshopdb',   # your database name
         'USER': 'root',    # your username
         'PASSWORD': ''    # your password
     }
