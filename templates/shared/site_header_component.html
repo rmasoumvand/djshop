@@ -5,8 +5,8 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> 80 21 24 36 98+ </a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-phone"></i> 80 21 24 36 98+ </a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
 
                 <div class="col-sm-4" style="text-align: left;">
                     <div class="logo">
-                        <a href="index.html"><img src="{{ site_setting.site_logo.url }}" alt="Logo"
+                        <a href="/"><img src="{{ site_setting.site_logo.url }}" alt="Logo"
                                                   style="text-align: center;"/></a>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                  {% if request.user.is_superuser %}
                                     <li><a href="/admin"><i class="fa fa-user"></i> پنل ادمین</a></li>
                                 {% endif %} 
-                                <li><a href="login.html"><i class="fa fa-shopping-cart"></i> سبد خرید</a></li>
+                                <li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> سبد خرید</a></li>
                                 <li><a href="{% url 'user_panel_dashboard' %}"><i class="fa fa-user"></i> پنل کاربری</a>
                                 </li>
                                 <li><a href="{% url 'logout_page' %}"><i class="fa fa-sign-out"></i> خروج</a></li>
@@ -69,13 +69,21 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-3">
+                <div class="col-sm-4 col-md-4 col-lg-4">
                     <div class="search_box pull-left">
-                        <input type="text" placeholder="جستـجو"/>
+                        <form action="/search" method="get">
+                             {% csrf_token %} 
+                            <div class="form-group">
+                                <input type="text"  placeholder="جستـجو" class="form-control" name="q" id="q">
+                                <br>
+                                <button type="submit" class="btn btn-success btn-block"><i class="fa fa-search"></i></button>
+                            </div>
+                           
+                        </form>
                     </div>
                 </div>
 
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
                                 data-target=".navbar-collapse">
@@ -97,9 +105,9 @@
                                 <a class="{% if request.resolver_match.url_name == 'product-list' %}active{% endif %}"
                                    href="{% url 'product-list' %}">محصولات</a>
                             </li>
-                            <!-- <li><a
+                            <li><a
                                     class="{% if request.resolver_match.url_name == 'articles_list' %}active{% endif %}"
-                                    href="{% url 'articles_list' %}">مقالات</a></li> -->
+                                    href="{% url 'articles_list' %}">مقالات</a></li>
                             <li><a
                                     class="{% if request.resolver_match.url_name == 'about_page' %}active{% endif %}"
                                     href="{% url 'about_page' %}">درباره مـا</a></li>
