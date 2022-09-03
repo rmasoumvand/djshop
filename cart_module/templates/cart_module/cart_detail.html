@@ -17,10 +17,9 @@
 
 <div style="padding: 10px ;" >
 
-	{% if  cart.items.all.count != 0   %}
-		<table class="table table-bordered table-hover table-responsive"  >
-				
+	{% if  cart.items.all  %} 
 
+		<table class="table table-bordered table-hover table-responsive"  >
 			<thead>
 				<tr>
 					<th class="text-center"> تصویر محصول</th>
@@ -39,10 +38,18 @@
 						<td >
 							{% if product.image %}
 							{% thumbnail product.image "100x100" quality=90 crop='center' as im %}
-								<img src="{{ im.url }}">
+							
+								<a href="{% url  'product-detail' slug=product.slug %}">
+									<img src="{{ im.url }}">
+								</a>
+							
 							{% endthumbnail %}
 							{% else %}
-								<img src="/static/images/shop/product.jpg" alt="">
+							
+								<a href="{% url  'product-detail' slug=product.slug %}">
+									<img src="/static/images/shop/product.jpg" alt="">
+								</a>
+
 							{% endif %}
 						</td>
 
@@ -89,16 +96,14 @@
 			<a href="{% url 'order_create' %}" class="btn btn-success"> ادامه پرداخت</a>
 
 		</div>
-	{% else %}
+	{% else %} 
 		<div class="alert alert-info">
 			<strong class="text-center"> سبد خرید شما خالی است</strong>
 		</div>
-	{% endif %}
-	
+
+	{% endif %} 
 
 </div>
-
-	
 
 &nbsp
 {% endblock %}

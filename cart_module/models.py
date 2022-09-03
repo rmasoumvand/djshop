@@ -34,7 +34,7 @@ class CartItem(models.Model):
     related_name='cart_items',
     on_delete=models.CASCADE,verbose_name= 'شناسه محصول'
     )
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0 , verbose_name= 'قیمت واحد ')
+    price = models.DecimalField(max_digits=10, decimal_places=0, default=0 , verbose_name= 'قیمت واحد ')
     quantity = models.PositiveIntegerField(default=1 , verbose_name= 'تعداد محصول')
 
     class Meta:

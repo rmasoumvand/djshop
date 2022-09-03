@@ -63,5 +63,8 @@ def cart_remove(request, product_id):
 
 @login_required
 def cart_detail(request):
-    cart = Cart.objects.get(user=request.user)
+    try:
+        cart = Cart.objects.get(user=request.user)
+    except Cart.DoesNotExist:
+        cart = None
     return render(request, 'cart_module/cart_detail.html', {'cart': cart})
