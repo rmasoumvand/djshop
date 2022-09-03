@@ -1,6 +1,7 @@
 {% extends 'shared/_layout.html' %}
 {% load thumbnail %}
 {% load render_partial %}
+{% load poll_extras %}
 
 {% block title %}لیست محصولات{% endblock %}
 
@@ -61,7 +62,7 @@
                                         data-slider-value="[{{ start_price }},{{ end_price }}]"
                                         id="sl2">
                                 <br/>
-                                <b>{{ db_max_price }}</b> <b class="pull-left">0</b>
+                                <b>{{ db_max_price|three_digits_currency }}</b> <b class="pull-left">0</b>
                             </div>
                         </div><!--/price-range-->
                         <div>
@@ -72,7 +73,8 @@
                             </form>
                             <button class="btn btn-success btn-block" onclick="filterProducts()">فیلتر</button>
                         </div>
-                        <div class="shipping text-center"><!--shipping-->
+                        <!--shipping-->
+                        <div class="shipping text-center">
                             {% for banner in banners %}
                                 <a href="{{ banner.url }}">
                                     <img src="{{ banner.image.url }}" alt="">
@@ -80,7 +82,8 @@
                             {% endfor %}
                             <br>
                             <br>
-                        </div><!--/shipping-->
+                        </div>
+                        <!--/shipping-->
 
                     </div>
                 </div>

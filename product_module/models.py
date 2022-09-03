@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from account_module.models import User
+from .models import User
 
 
 # Create your models here.
@@ -19,6 +20,14 @@ class ProductCategory(models.Model):
         verbose_name_plural = 'دسته بندی ها'
 
 
+
+
+
+
+
+
+
+
 class ProductBrand(models.Model):
     title = models.CharField(max_length=300, verbose_name='نام برند', db_index=True)
     url_title = models.CharField(max_length=300, verbose_name='نام در url', db_index=True)
@@ -32,12 +41,15 @@ class ProductBrand(models.Model):
         return self.title
 
 
+
+
+
 class Product(models.Model):
     title = models.CharField(max_length=300, verbose_name='نام محصول')
     category = models.ManyToManyField(ProductCategory, related_name='product_categories', verbose_name='دسته بندی ها')
     image = models.ImageField(upload_to='images/products', null=True, blank=True, verbose_name='تصویر محصول')
     brand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, verbose_name='برند', null=True, blank=True)
-    price = models.IntegerField(verbose_name='قیمت')
+    price = models.IntegerField(verbose_name='قیمت به تومان ')
     short_description = models.CharField(max_length=360, db_index=True, null=True, verbose_name='توضیحات کوتاه')
     description = models.TextField(verbose_name='توضیحات اصلی', db_index=True)
     slug = models.SlugField(default="", null=False, db_index=True, blank=True, max_length=200, unique=True, verbose_name='عنوان در url')
@@ -71,6 +83,7 @@ class ProductTag(models.Model):
         return self.caption
 
 
+
 class ProductVisit(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='محصول')
     ip = models.CharField(max_length=30, verbose_name='آی پی کاربر')
@@ -85,6 +98,7 @@ class ProductVisit(models.Model):
 
 
 
+
 class ProductGallery(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
     image = models.ImageField(upload_to='images/product-gallery', verbose_name='تصویر')
@@ -95,3 +109,23 @@ class ProductGallery(models.Model):
     class Meta:
         verbose_name = 'تصویر گالری'
         verbose_name_plural = 'گالری تصاویر'
+
+
+
+
+class ProductComment(models.Model):
+    title = models.CharField(max_length=300 , blank= False , verbose_name='عنوان')
+    description = models.CharField(max_length=300 , blank= False ,  verbose_name='توضیحات')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False , verbose_name= "کاربر")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False , verbose_name= "محصول")
+    is_active = models.BooleanField(verbose_name='فعال / غیرفعال' , default = False)
+    is_delete = models.BooleanField(verbose_name='حذف شده / نشده' , default = False)
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت')
+  
+
+    def __str__(self):
+        return f'( {self.title} - {self.user.username} )'
+
+    class Meta:
+        verbose_name = 'نظرات محصولات'
+        verbose_name_plural = 'نظرات محصولات'

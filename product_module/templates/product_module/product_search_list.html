@@ -1,0 +1,33 @@
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% load render_partial %}
+{% load poll_extras %}
+
+{% block title %} نتایج جستجو {% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 padding-right">
+                    {% if products %}
+                       <!--features_items-->
+                        <div class="features_items">
+                            <h2 class="title text-center">جستجو محصولات ({{products.count}}) </h2>
+                            {% for product in products %}
+                                {% include 'includes/product_item_partial.html' with product=product col_size=4 %}
+                            {% endfor %}
+                        </div>
+                        <!--features_items-->
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <p>هیچ محصولی یافت نشد</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
