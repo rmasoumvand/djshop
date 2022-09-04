@@ -1,4 +1,4 @@
 # djshop
-Django based online shop system
-======================================
-This is an online product store that was created by the Django framework.
+Django based online store
+==========================
+This is an online store that was created by the Django framework.
