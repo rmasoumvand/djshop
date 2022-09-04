@@ -1,11 +1,15 @@
+from urllib.request import Request
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
 from account_module.models import User
+from order_module.models import Order, OrderItem
 from .forms import EditProfileModelForm, ChangePasswordForm
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest, HttpResponse
 
 
 class UserPanelDashboardPage(TemplateView):
@@ -71,3 +75,24 @@ class ChangePasswordPage(View):
 
 def user_panel_menu_component(request: HttpRequest):
     return render(request, 'user_panel_module/components/user_panel_menu_component.html')
+
+
+
+@login_required
+def user_orders(request):
+    try:
+        orders = Order.objects.filter(user=request.user).order_by('-created').values()
+    except Order.DoesNotExist:
+        orders = None
+    return render(request, 'user_panel_module/user_orders.html', {'orders': orders})    
+
+
+
+@login_required
+def user_order_details(request , order_id):
+    try:
+        print(str(order_id))
+        orderItems = OrderItem.objects.filter(order = order_id).select_related()
+    except OrderItem.DoesNotExist:
+        orderItems = None
+    return render(request, 'user_panel_module/user_order_details.html', {'orderItems': orderItems})    

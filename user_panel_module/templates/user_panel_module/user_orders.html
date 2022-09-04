@@ -1,0 +1,120 @@
+
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+{% load render_partial %}
+{% load static %}
+{% load poll_extras %}
+
+{% block title %}
+سفارش من
+{% endblock %}
+   
+
+{% block content %}
+&nbsp
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<h4 class="text-center"> سفارشات من <h4> <hr>
+<div style="padding: 10px ;" >
+
+
+	 
+	{% if  orders  %} 
+
+		<table class="table table-bordered table-hover table-responsive"  >
+			<thead>
+				<tr>
+					<th class="text-center"> شناسه سفارش </th>
+					<th class="text-center"> قیمت کل سفارش </th>
+					<th class="text-center"> شهر</th>
+					<th class="text-center"> استان </th>
+					<th class="text-center">ادرس</th>
+					<th class="text-center">کدپستی</th>
+					<th class="text-center">زمان ایجاد</th>
+					<th class="text-center">وضیعت پرداخت</th>
+					<th class="text-center"> عملیات </th>
+				
+				</tr>
+			</thead>
+			
+			<tbody>
+				{% for order in orders %}
+					<tr class="text-center">
+
+						<td>
+							<a href="{% url  'user_order_details_page' order_id=order.id  %}"> 
+								#{{ order.id }}
+							</a>
+						</td>
+
+						<td>
+							{{ order.total_price|three_digits_currency }}
+						</td>
+
+						<td>
+							{{ order.city }}
+						</td>
+
+						<td>
+							{{ order.province }}
+						</td>
+
+						<td>
+							{{ order.address }}
+						</td>
+
+
+						<td>
+							{{ order.postal_code }}
+						</td>
+
+						<td>
+							{{ order.created | show_jalali_date }}
+						</td>
+
+						<td>
+							{% if  order.paid  %} 
+							   <text class="text-success"> پرداخت شده </text>
+							{% else %}
+							   <text class="text-danger"> پرداخت نشده </text>   
+							{% endif %} 
+
+							
+						</td>
+
+
+						<td>
+
+							{% if  order.paid  %} 
+							   <text > - </text>
+							{% else %}
+							  
+							   <a href="/go-to-gateway/{{order.id}}">
+							     	<text class="text-success">  پرداخت  </text>   
+							   </a>
+
+							{% endif %} 
+
+							
+						</td>
+
+					</tr>
+				
+				{% endfor %}
+			</tbody>
+
+		</table>
+
+		<hr>
+		
+	{% else %} 
+		<div class="alert alert-info">
+			<strong class="text-center"> در حال حاضر سفارشی ندارید</strong>
+		</div>
+
+	{% endif %} 
+
+</div>
+
+&nbsp
+{% endblock %}

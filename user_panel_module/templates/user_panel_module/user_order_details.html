@@ -1,0 +1,74 @@
+
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+{% load render_partial %}
+{% load static %}
+{% load poll_extras %}
+
+{% block title %}
+جزییات سفارش 
+{% endblock %}
+   
+
+{% block content %}
+&nbsp
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div style="padding: 10px ;" >
+
+	{% if  orderItems  %} 
+
+		<table class="table table-bordered table-hover table-responsive"  >
+
+			<thead>
+
+				<tr>
+
+					<th class="text-center"> محصول </th>
+					<th class="text-center"> قیمت واحد </th>
+					<th class="text-center"> تعداد</th>
+					
+				
+				</tr>
+			</thead>
+			
+			<tbody>
+				{% for item in orderItems %}
+					<tr class="text-center">
+
+						<td>
+							<a href="{% url 'product-detail' slug=item.product.slug %}"> 
+								{{ item.product.title }}
+							</a>
+							
+						</td>
+
+						<td>
+							{{ item.price|three_digits_currency }}
+						</td>
+
+						<td>
+							{{ item.quantity }}
+						</td>
+
+					</tr>
+				
+				{% endfor %}
+			</tbody>
+
+		</table>
+
+		<hr>
+		
+	{% else %} 
+		<div class="alert alert-info">
+			<strong class="text-center"> در حال حاضر سفارشی ندارید</strong>
+		</div>
+
+	{% endif %} 
+
+</div>
+
+&nbsp
+{% endblock %}
