@@ -159,7 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mohammadataei.django@gmail.com'
+EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 
@@ -196,7 +196,7 @@ MERCHANT_CODE = '67c0f1bd-1369-4bb5-b846-511034c649b3'
 AZ_IRANIAN_BANK_GATEWAYS = {
    'GATEWAYS': {
        'IDPAY': {
-           'MERCHANT_CODE': '67c0f1bd-1369-4bb5-b846-511034c649b3',
+           'MERCHANT_CODE': '5acdac96-aed9-43d1-bdaa-81029a725223',
            'METHOD': 'POST',  # GET or POST
            'X_SANDBOX': 1,  # 0 disable, 1 active
        },

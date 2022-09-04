@@ -2,9 +2,8 @@
 {% load thumbnail %}
 {% load poll_extras %}
 
-<h2>Login</h2>
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Login{% endif %}
+    {% if category %}{{ category.name }}{% else %}اطلاعات سفارش{% endif %}
 {% endblock %}
 
 {%block content %}
@@ -38,14 +37,14 @@
            
             <div class="mb-3">
               <label for="address">آدرس 1</label>
-              <input type="text" id="address" name="address" class="form-control" placeholder="تهران اسلامشتر ... " required>
+              <input type="text" id="address" name="address" class="form-control" placeholder="البرز، کرج، خیابان شهید بهشتی..." required>
             </div>
 
             <br>
 
             <div class="mb-3">
               <label for="second_address">آدرس 2 <span class="text-muted">(اختیاری)</span></label>
-              <input id="second_address" name="second_address" type="text" class="form-control" placeholder="تهران اسلامشتر ... " >
+              <input id="second_address" name="second_address" type="text" class="form-control" placeholder="البرز، کرج، خیابان شهید بهشتی..." >
             </div>
 
             <br>

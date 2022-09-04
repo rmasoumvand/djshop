@@ -6,6 +6,8 @@ from django.http import HttpResponse, Http404
 from order_module.models import Order
 from django.shortcuts import render
 
+from utils import bankfactories
+
 # go to bank
 def go_to_gateway_view(request , orderid):
 
@@ -15,9 +17,9 @@ def go_to_gateway_view(request , orderid):
     # خواندن مبلغ از هر جایی که مد نظر است
     amount = order.total_price
     # تنظیم شماره موبایل کاربر از هر جایی که مد نظر است
-    user_mobile_number = '+989011999639'  # اختیاری
+    user_mobile_number = '+989980000000'  # اختیاری
 
-    factory = bankfactories.BankFactory()
+    factory = bankfactories.MyBankFactory()
 
     try:
         bank = factory.create() # or factory.create(bank_models.BankType.BMI) or set identifier
