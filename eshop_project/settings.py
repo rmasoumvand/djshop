@@ -101,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eshopdb',   # your database name
         'USER': 'root',    # your username
-        'PASSWORD': ''    # your password
+        'PASSWORD': '12345q@'    # your password
     }
 }
 

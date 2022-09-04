@@ -74,10 +74,10 @@
                             <button class="btn btn-success btn-block" onclick="filterProducts()">فیلتر</button>
                         </div>
                         <!--shipping-->
-                        <div class="shipping text-center">
+                        <div class="text-center">
                             {% for banner in banners %}
                                 <a href="{{ banner.url }}">
-                                    <img src="{{ banner.image.url }}" alt="">
+                                    <img src="{{ banner.image.url }}" alt="" style="padding-top: 15px; height: 100%; width: 100%; object-fit: contain">
                                 </a>
                             {% endfor %}
                             <br>
